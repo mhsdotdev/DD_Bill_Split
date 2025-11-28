@@ -2,67 +2,294 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DD Dinner Bill</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Deli Deli Co. — DD Dinner Bill</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>DD Dinner Menu</h1>
-    <p class="subtitle">Select what you had for dinner below</p>
+  <main id="app" aria-live="polite">
 
-    <div id="menu">
-      <div class="section">
-        <h2>Burgers</h2>
-        <label><input type="checkbox" value="360"> Extra Beef Patty 100g <span>Rs. 360</span></label>
-        <label><input type="checkbox" value="770"> Swiss Mushroom (Beef) <span>Rs. 770</span></label>
-        <label><input type="checkbox" value="890"> DD Smokey House (Chicken) 150g <span>Rs. 890</span></label>
-        <label><input type="checkbox" value="1060"> The Messi (Beef) <span>Rs. 1060</span></label>
-        <label><input type="checkbox" value="1060"> The Messi (Chicken) <span>Rs. 1060</span></label>
-        <label><input type="checkbox" value="1090"> Molten Lava (Beef) 150g <span>Rs. 1090</span></label>
+    <!-- =======================
+         LANDING (interactive)
+         ======================= -->
+    <section id="landing" aria-labelledby="landing-title">
+      <div class="card landing-card" role="region" aria-label="Welcome">
+        <header class="landing-header">
+          <h1 id="landing-title">Deli Deli Co.</h1>
+          <p class="subtitle">Who’s settling the bill today?</p>
+          <p class="hint">Select your name to start your order.</p>
+        </header>
+
+        <nav class="names" aria-label="Guest list">
+          <!-- Each button includes expected order in data-order for validation (JS) -->
+          <button type="button" class="name-tile"
+            data-person="Hamza"
+            data-order="messiBeef,fries,pepsi">
+            Hamza
+          </button>
+
+          <button type="button" class="name-tile"
+            data-person="Taimoor"
+            data-order="smokey,fries,water">
+            Taimoor
+          </button>
+
+          <button type="button" class="name-tile"
+            data-person="Ali Saleem"
+            data-order="messiBeef,fries,icedTea">
+            Ali Saleem
+          </button>
+
+          <button type="button" class="name-tile"
+            data-person="Junaid Arif"
+            data-order="messiChicken,fries,oreoShake">
+            Junaid Arif
+          </button>
+
+          <button type="button" class="name-tile"
+            data-person="Abdullah"
+            data-order="molten,fries,chocOver">
+            Abdullah
+          </button>
+
+          <button type="button" class="name-tile"
+            data-person="Aqeel Zahid"
+            data-order="swiss,extraPatty,fries,zero7up">
+            Aqeel Zahid
+          </button>
+
+          <button type="button" class="name-tile"
+            data-person="Shehryar Khan"
+            data-order="swiss,extraPatty,fries,chocOver">
+            Shehryar Khan
+          </button>
+        </nav>
+
+        <div class="landing-actions">
+          <button type="button" id="enterMenu" disabled>Start</button>
+        </div>
       </div>
+    </section>
 
-      <div class="section">
-        <h2>Fries</h2>
-        <label><input type="checkbox" value="220"> Curly Meal Fries <span>Rs. 220</span></label>
+    <!-- =======================
+         MENU (hidden by default)
+         ======================= -->
+    <section id="menuSection" aria-labelledby="menu-title" hidden>
+      <div class="card menu-card" role="region" aria-label="Menu">
+        <header class="menu-header">
+          <h1 id="menu-title">DD Dinner Menu</h1>
+          <p id="helloText" class="subtitle" aria-live="polite"></p>
+        </header>
+
+        <form id="menuForm" aria-describedby="menuHelp">
+          <p id="menuHelp" class="visually-hidden">
+            Please select at least one item from each section: Burgers, Fries, Drinks.
+          </p>
+
+          <!-- Burgers -->
+          <fieldset class="section" aria-labelledby="burgers-legend">
+            <legend id="burgers-legend">Burgers</legend>
+
+            <label for="messiBeef">
+              <span class="left">
+                <input type="checkbox" id="messiBeef" name="burger"
+                       value="The Messi (Beef)"
+                       data-cat="burger" data-price="1060">
+                <span class="item-name">The Messi (Beef)</span>
+              </span>
+              <span class="item-price">Rs. 1060</span>
+            </label>
+
+            <label for="messiChicken">
+              <span class="left">
+                <input type="checkbox" id="messiChicken" name="burger"
+                       value="The Messi (Chicken)"
+                       data-cat="burger" data-price="1060">
+                <span class="item-name">The Messi (Chicken)</span>
+              </span>
+              <span class="item-price">Rs. 1060</span>
+            </label>
+
+            <label for="smokey">
+              <span class="left">
+                <input type="checkbox" id="smokey" name="burger"
+                       value="DD Smokey House (Chicken) 150g"
+                       data-cat="burger" data-price="890">
+                <span class="item-name">DD Smokey House (Chicken) 150g</span>
+              </span>
+              <span class="item-price">Rs. 890</span>
+            </label>
+
+            <label for="swiss">
+              <span class="left">
+                <input type="checkbox" id="swiss" name="burger"
+                       value="Swiss Mushroom (Beef)"
+                       data-cat="burger" data-price="770">
+                <span class="item-name">Swiss Mushroom (Beef)</span>
+              </span>
+              <span class="item-price">Rs. 770</span>
+            </label>
+
+            <label for="molten">
+              <span class="left">
+                <input type="checkbox" id="molten" name="burger"
+                       value="Molten Lava (Beef) 150g"
+                       data-cat="burger" data-price="1090">
+                <span class="item-name">Molten Lava (Beef) 150g</span>
+              </span>
+              <span class="item-price">Rs. 1090</span>
+            </label>
+
+            <!-- Add-on available -->
+            <label for="extraPatty">
+              <span class="left">
+                <input type="checkbox" id="extraPatty" name="burgerAddon"
+                       value="Extra Beef Patty 100g"
+                       data-cat="burger" data-price="360">
+                <span class="item-name">Extra Beef Patty 100g</span>
+              </span>
+              <span class="item-price">Rs. 360</span>
+            </label>
+          </fieldset>
+
+          <!-- Fries -->
+          <fieldset class="section" aria-labelledby="fries-legend">
+            <legend id="fries-legend">Fries</legend>
+
+            <label for="fries">
+              <span class="left">
+                <input type="checkbox" id="fries" name="fries"
+                       value="Curly Meal Fries"
+                       data-cat="fries" data-price="220">
+                <span class="item-name">Curly Meal Fries</span>
+              </span>
+              <span class="item-price">Rs. 220</span>
+            </label>
+          </fieldset>
+
+          <!-- Drinks & Desserts -->
+          <fieldset class="section" aria-labelledby="drinks-legend">
+            <legend id="drinks-legend">Drinks</legend>
+
+            <label for="pepsi">
+              <span class="left">
+                <input type="checkbox" id="pepsi" name="drink"
+                       value="Pepsi"
+                       data-cat="drink" data-price="105">
+                <span class="item-name">Pepsi</span>
+              </span>
+              <span class="item-price">Rs. 105</span>
+            </label>
+
+            <label for="icedTea">
+              <span class="left">
+                <input type="checkbox" id="icedTea" name="drink"
+                       value="Peach Iced Tea"
+                       data-cat="drink" data-price="240">
+                <span class="item-name">Peach Iced Tea</span>
+              </span>
+              <span class="item-price">Rs. 240</span>
+            </label>
+
+            <label for="water">
+              <span class="left">
+                <input type="checkbox" id="water" name="drink"
+                       value="Mineral Water"
+                       data-cat="drink" data-price="80">
+                <span class="item-name">Mineral Water</span>
+              </span>
+              <span class="item-price">Rs. 80</span>
+            </label>
+
+            <label for="zero7up">
+              <span class="left">
+                <input type="checkbox" id="zero7up" name="drink"
+                       value="7up Zero (Diet)"
+                       data-cat="drink" data-price="105">
+                <span class="item-name">7up Zero (Diet)</span>
+              </span>
+              <span class="item-price">Rs. 105</span>
+            </label>
+
+            <label for="chocOver">
+              <span class="left">
+                <input type="checkbox" id="chocOver" name="drink"
+                       value="Chocolate Overdoze (Meal)"
+                       data-cat="drink" data-price="390">
+                <span class="item-name">Chocolate Overdoze (Meal)</span>
+              </span>
+              <span class="item-price">Rs. 390</span>
+            </label>
+
+            <label for="oreoShake">
+              <span class="left">
+                <input type="checkbox" id="oreoShake" name="drink"
+                       value="Oreo Shake (Meal)"
+                       data-cat="drink" data-price="390">
+                <span class="item-name">Oreo Shake (Meal)</span>
+              </span>
+              <span class="item-price">Rs. 390</span>
+            </label>
+          </fieldset>
+
+          <!-- Actions -->
+          <div class="actions">
+            <button type="button" id="showBill">Show My Bill</button>
+            <button type="button" id="refreshMenu">Refresh Menu</button>
+            <button type="button" id="backBtn">Back</button>
+          </div>
+        </form>
       </div>
+    </section>
+  </main>
 
-      <div class="section">
-        <h2>Drinks</h2>
-        <label><input type="checkbox" value="105"> Pepsi <span>Rs. 105</span></label>
-        <label><input type="checkbox" value="240"> Peach Iced Tea <span>Rs. 240</span></label>
-        <label><input type="checkbox" value="80"> Mineral Water <span>Rs. 80</span></label>
-        <label><input type="checkbox" value="105"> 7up Zero (Diet) <span>Rs. 105</span></label>
-        <label><input type="checkbox" value="390"> Chocolate Overdoze (Meal) <span>Rs. 390</span></label>
-        <label><input type="checkbox" value="390"> Oreo Shake (Meal) <span>Rs. 390</span></label>
+  <!-- =======================
+       POPUPS (Message + Bill)
+       ======================= -->
+
+  <!-- Message popup (for validation & fun prompts) -->
+  <div id="messagePopup" class="popup" role="dialog" aria-modal="true" aria-labelledby="messageTitle" hidden>
+    <div class="popup-content">
+      <h2 id="messageTitle">Heads up</h2>
+      <div id="messageBody">
+        <!-- JS injects messages like:
+             “Jhot mat bolo bhiya, jo khaya tha uska paisa do 😄” -->
+      </div>
+      <div class="popup-actions">
+        <button type="button" id="closeMessage">OK</button>
       </div>
     </div>
-
-    <button class="btn" id="showBill">Show My Bill</button>
-    <button class="btn refresh" id="refreshMenu">Refresh Menu</button>
   </div>
 
-  <!-- Popup -->
-  <div class="popup" id="billPopup">
+  <!-- Bill popup -->
+  <div id="billPopup" class="popup" role="dialog" aria-modal="true" aria-labelledby="billTitle" hidden>
     <div class="popup-content">
-      <h2>Your Bill</h2>
-      <p id="selectedItems"></p>
+      <h2 id="billTitle">Your Bill</h2>
 
-      <div class="totals">
+      <section aria-labelledby="billItemsTitle">
+        <h3 id="billItemsTitle" class="visually-hidden">Selected items</h3>
+        <div id="selectedItems"></div>
+      </section>
+
+      <section class="totals" aria-labelledby="totalsTitle">
+        <h3 id="totalsTitle" class="visually-hidden">Totals</h3>
         <p><span>Subtotal</span> <strong>Rs. <span id="subtotal">0</span></strong></p>
         <p><span>GST (5%)</span> <strong>Rs. <span id="gst">0</span></strong></p>
         <hr />
         <p class="total"><span>Total Payable</span> <strong>Rs. <span id="total">0</span></strong></p>
-      </div>
+      </section>
 
-      <div class="account">
-        <h3>Transfer Amount To</h3>
+      <section class="account" aria-labelledby="payToTitle">
+        <h3 id="payToTitle">Transfer Amount To</h3>
         <p><strong>Account Title:</strong> Abdullah Ashfaq</p>
         <p><strong>Bank:</strong> Nayapay</p>
         <p><strong>Account No:</strong> 03341806608</p>
-      </div>
+        <p id="abdullahWave" class="wave" hidden>👋 Wave to Abdullah :)</p>
+      </section>
 
-      <button class="close-btn" id="closePopup">Close</button>
+      <div class="popup-actions">
+        <button type="button" id="closePopup">Close</button>
+      </div>
     </div>
   </div>
 
