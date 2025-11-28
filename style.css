@@ -1,0 +1,179 @@
+body {
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(180deg, #eef2f5, #d9e2ec);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 650px;
+  background: #fff;
+  margin: 50px auto;
+  padding: 25px 35px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #234b72;
+  margin-bottom: 5px;
+}
+
+p.subtitle {
+  text-align: center;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+.section {
+  margin-bottom: 25px;
+}
+
+.section h2 {
+  border-left: 4px solid #007bff;
+  padding-left: 10px;
+  color: #004080;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  transition: background 0.2s ease;
+  cursor: pointer;
+}
+
+label:hover {
+  background: #f3f6fa;
+}
+
+label span {
+  color: #007bff;
+  font-weight: 500;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-right: 10px;
+}
+
+.btn {
+  width: 100%;
+  background: #00509d;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 10px;
+}
+
+.btn:hover {
+  background: #003d7a;
+}
+
+.refresh {
+  background: #f3f4f6;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+.refresh:hover {
+  background: #e1e4e8;
+}
+
+/* Popup Styles */
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: #ffffff;
+  padding: 25px 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+  text-align: left;
+  color: #2b2b2b;
+  animation: fadeIn 0.3s ease;
+}
+
+.popup-content h2 {
+  text-align: center;
+  color: #234b72;
+}
+
+#selectedItems {
+  margin-bottom: 10px;
+  line-height: 1.4;
+  color: #333;
+}
+
+.totals {
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+.totals p {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
+.total {
+  color: #007a3d;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.account {
+  background: #f5faf7;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.account h3 {
+  margin-top: 0;
+  color: #004a28;
+}
+
+.close-btn {
+  margin-top: 20px;
+  background: #b3261e;
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.close-btn:hover {
+  background: #8c1a15;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: scale(0.9);}
+  to {opacity: 1; transform: scale(1);}
+}
